@@ -108,19 +108,18 @@ router.post('/login', async (req, res) => {
 })
 
 //add product api
-router.post("/add-product", authenticateToken, async (req, res) => {
+app.post('/add-product', authenticateToken, async (req, res) => {
     try {
-        const { name, price, category, company, userId, pic } = req.body;
-
-        const newProduct = new Product({ name, price, category, company, userId, photo: pic });
-        const result = await newProduct.save();
-
-        res.status(201).json(result);
+        const productData = req.body;
+        const product = new Product(productData);
+        await product.save();
+        res.status(201).json({ message: 'Product added successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 //get product
 router.get('/products', authenticateToken, async (req, res) => {

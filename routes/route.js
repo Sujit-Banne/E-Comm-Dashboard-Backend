@@ -108,7 +108,7 @@ router.post('/login', async (req, res) => {
 })
 
 //add product api
-app.post('/add-product', authenticateToken, async (req, res) => {
+router.post('/add-product', authenticateToken, async (req, res) => {
     try {
         const productData = req.body;
         const product = new Product(productData);

@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema({
     company: {
         type: String,
         required: true
+    },
+    photo: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 

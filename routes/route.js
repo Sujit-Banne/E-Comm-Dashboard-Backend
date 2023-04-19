@@ -110,9 +110,9 @@ router.post('/login', async (req, res) => {
 //add product api
 router.post("/add-product", authenticateToken, async (req, res) => {
     try {
-        const { name, price, category, company, userId } = req.body;
+        const { name, price, category, company, userId, pic } = req.body;
 
-        const newProduct = new Product({ name, price, category, company, userId });
+        const newProduct = new Product({ name, price, category, company, userId, photo: pic });
         const result = await newProduct.save();
 
         res.status(201).json(result);
